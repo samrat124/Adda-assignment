@@ -1,11 +1,22 @@
-const mongoose = require('mongoose');
+class Facility {
+  constructor(name, slots) {
+    this.name = name;
+    this.slots = slots;
+    this.bookings = {};
+  }
+}
 
-const facilitySchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  slots: { type: Object, required: true },
-  bookings: { type: Object, default: {} },
-});
+const facilities = [
+  new Facility('Clubhouse', {
+    '10:00 - 16:00': 100,
+    '16:00 - 22:00': 500,
+  }),
+  new Facility('Tennis Court', {
+    '00:00 - 23:59': 50,
+  }),
+];
 
-const Facility = mongoose.model('Facility', facilitySchema);
-
-module.exports = Facility;
+module.exports = {
+  Facility,
+  facilities,
+};
