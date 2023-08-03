@@ -1,14 +1,9 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const facilityRoutes = require('./routes/facilityRoutes');
+const http = require('http');
+const app = require('./app');
+const port = 3002;
 
-const app = express();
-app.use(bodyParser.json());
+const server = http.createServer(app);
 
-app.use(facilityRoutes);
-
-// Start the server
-const PORT = 3001;
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+server.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
 });

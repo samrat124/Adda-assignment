@@ -1,22 +1,24 @@
-class Facility {
-  constructor(name, slots) {
-    this.name = name;
-    this.slots = slots;
-    this.bookings = {};
-  }
+const fs = require('fs');
+const path = require('path');
+
+const dbFilePath = path.resolve(__dirname, '../db.json');
+
+function readDB() {
+  const data = fs.readFileSync(dbFilePath, 'utf8');
+  return JSON.parse(data);
 }
 
-const facilities = [
-  new Facility('Clubhouse', {
-    '10:00 - 16:00': 100,
-    '16:00 - 22:00': 500,
-  }),
-  new Facility('Tennis Court', {
-    '00:00 - 23:59': 50,
-  }),
-];
+function writeDB(data) {
+  fs.writeFileSync(dbFilePath, JSON.stringify(data, null, 2), 'utf8');
+}
+
+function getFacilities() {
+  const db = readDB();
+  return db.facilities;
+}
 
 module.exports = {
-  Facility,
-  facilities,
+  readDB,
+  writeDB,
+  getFacilities,
 };
