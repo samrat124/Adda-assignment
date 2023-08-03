@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require('express')
 const bodyParser = require('body-parser');
 const facilityRoutes = require('./routes/facilityRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
